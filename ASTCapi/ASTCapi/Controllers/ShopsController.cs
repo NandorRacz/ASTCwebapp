@@ -9,7 +9,7 @@ using ASTCapi.Services;
 
 namespace ASTCapi.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/shops")]
     [ApiController]
     public class ShopsController : ControllerBase
     {
@@ -20,13 +20,13 @@ namespace ASTCapi.Controllers
             _shopService = shopService;
         }
 
-        [HttpGet]
+        [HttpGet(Name ="Shop_List")]
         public ActionResult<List<Shop>> Get()
         {
             return _shopService.Get();
         }
 
-        [HttpGet("{id:length(24)}", Name = "GetShop")]
+        [HttpGet("{id:length(24)}", Name = "Shop_Info")]
         public ActionResult<Shop> Get(string id)
         {
             var shop = _shopService.Get(id);
@@ -39,7 +39,7 @@ namespace ASTCapi.Controllers
             return shop;
         }
 
-        [HttpPost]
+        [HttpPost(Name ="Shop_Create")]
         public ActionResult<Shop> Create(Shop shop)
         {
             _shopService.Create(shop);
@@ -47,7 +47,7 @@ namespace ASTCapi.Controllers
             return CreatedAtRoute("GetShop", new { id = shop.Id.ToString() }, shop);
         }
 
-        [HttpPut("{id:length(24)}")]
+        [HttpPut("{id:length(24)}", Name ="Shop_Update")]
         public IActionResult Update(string id, Shop shopIn)
         {
             var shop = _shopService.Get(id);
@@ -62,7 +62,7 @@ namespace ASTCapi.Controllers
             return NoContent();
         }
 
-        [HttpDelete("{id:length(24)}")]
+        [HttpDelete("{id:length(24)}", Name ="Shop_Delete")]
         public IActionResult Delete(string id)
         {
             var shop = _shopService.Get(id);

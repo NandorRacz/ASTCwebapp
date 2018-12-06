@@ -9,24 +9,24 @@ using ASTCapi.Services;
 
 namespace ASTCapi.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/products")]
     [ApiController]
     public class ProductsController : ControllerBase
     {
         private readonly ProductService _productService;
 
-        public ProductsController(ProductService shopService)
+        public ProductsController(ProductService productService)
         {
-            _productService = shopService;
+            _productService = productService;
         }
 
-        [HttpGet]
+        [HttpGet()]
         public ActionResult<List<Product>> Get()
         {
             return _productService.Get();
         }
 
-        [HttpGet("{id:length(24)}", Name = "GetProduct")]
+        [HttpGet("{id:length(24)}", Name = "Product_Info")]
         public ActionResult<Product> Get(string id)
         {
             var product = _productService.Get(id);
@@ -39,7 +39,7 @@ namespace ASTCapi.Controllers
             return product;
         }
 
-        [HttpPost]
+        [HttpPost(Name = "Product_Create")]
         public ActionResult<Product> Create(Product product)
         {
             _productService.Create(product);
@@ -47,8 +47,8 @@ namespace ASTCapi.Controllers
             return CreatedAtRoute("GetShop", new { id = product.Id.ToString() }, product);
         }
 
-        [HttpPut("{id:length(24)}")]
-        public IActionResult Update(string id, Product shopIn)
+        [HttpPut("{id:length(24)}", Name ="Product_Update")]
+        public IActionResult Update(string id, Product productIn)
         {
             var product = _productService.Get(id);
 
@@ -57,12 +57,12 @@ namespace ASTCapi.Controllers
                 return NotFound();
             }
 
-            _productService.Update(id, shopIn);
+            _productService.Update(id, productIn);
 
             return NoContent();
         }
 
-        [HttpDelete("{id:length(24)}")]
+        [HttpDelete("{id:length(24)}", Name = "Product_Delete")]
         public IActionResult Delete(string id)
         {
             var product = _productService.Get(id);

@@ -33,7 +33,7 @@ namespace ASTCapi.Services
         }
 
         public Shop GetByName(string name)
-        {;
+        {
             return _shops.Find<Shop>(shop => shop.ShopName == name).FirstOrDefault();
         }
 

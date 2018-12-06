@@ -28,6 +28,7 @@ namespace ASTCapi
         {
             services.AddScoped<ShopService>();
             services.AddScoped<ProductService>();
+            services.AddScoped<SearchService>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 

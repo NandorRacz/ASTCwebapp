@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using ASTCapi.Models;
+﻿using ASTCapi.Models;
 using ASTCapi.Services;
+using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 
 namespace ASTCapi.Controllers
 {
@@ -20,13 +16,13 @@ namespace ASTCapi.Controllers
             _shopService = shopService;
         }
 
-        [HttpGet(Name ="Shop_List")]
+        [HttpGet(]
         public ActionResult<List<Shop>> Get()
         {
             return _shopService.Get();
         }
 
-        [HttpGet("{id:length(24)}", Name = "Shop_Info")]
+        [HttpGet("{id:length(24)}")]
         public ActionResult<Shop> Get(string id)
         {
             var shop = _shopService.Get(id);
@@ -39,7 +35,7 @@ namespace ASTCapi.Controllers
             return shop;
         }
 
-        [HttpPost(Name ="Shop_Create")]
+        [HttpPost()]
         public ActionResult<Shop> Create(Shop shop)
         {
             _shopService.Create(shop);
@@ -47,7 +43,7 @@ namespace ASTCapi.Controllers
             return CreatedAtRoute("GetShop", new { id = shop.Id.ToString() }, shop);
         }
 
-        [HttpPut("{id:length(24)}", Name ="Shop_Update")]
+        [HttpPut("{id:length(24)}")]
         public IActionResult Update(string id, Shop shopIn)
         {
             var shop = _shopService.Get(id);
@@ -62,7 +58,7 @@ namespace ASTCapi.Controllers
             return NoContent();
         }
 
-        [HttpDelete("{id:length(24)}", Name ="Shop_Delete")]
+        [HttpDelete("{id:length(24)}")]
         public IActionResult Delete(string id)
         {
             var shop = _shopService.Get(id);

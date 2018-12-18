@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using ASTCapi.Models;
+﻿using ASTCapi.Models;
 using ASTCapi.Services;
+using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 
 namespace ASTCapi.Controllers
 {
@@ -26,7 +22,7 @@ namespace ASTCapi.Controllers
             return _productService.Get();
         }
 
-        [HttpGet("{id:length(24)}", Name = "Product_Info")]
+        [HttpGet("{id:length(24)}")]
         public ActionResult<Product> Get(string id)
         {
             var product = _productService.Get(id);
@@ -39,7 +35,7 @@ namespace ASTCapi.Controllers
             return product;
         }
 
-        [HttpPost(Name = "Product_Create")]
+        [HttpPost()]
         public ActionResult<Product> Create(Product product)
         {
             _productService.Create(product);
@@ -47,7 +43,7 @@ namespace ASTCapi.Controllers
             return CreatedAtRoute("GetShop", new { id = product.Id.ToString() }, product);
         }
 
-        [HttpPut("{id:length(24)}", Name ="Product_Update")]
+        [HttpPut("{id:length(24)}")]
         public IActionResult Update(string id, Product productIn)
         {
             var product = _productService.Get(id);
@@ -62,7 +58,7 @@ namespace ASTCapi.Controllers
             return NoContent();
         }
 
-        [HttpDelete("{id:length(24)}", Name = "Product_Delete")]
+        [HttpDelete("{id:length(24)}")]
         public IActionResult Delete(string id)
         {
             var product = _productService.Get(id);

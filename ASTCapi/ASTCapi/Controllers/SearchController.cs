@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using ASTCapi.Models;
+﻿using ASTCapi.Models;
 using ASTCapi.Services;
+using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 
 namespace ASTCapi.Controllers
 {
@@ -20,13 +16,10 @@ namespace ASTCapi.Controllers
             _searchService = searchService;
         }
 
-        [HttpGet("{name}", Name = "Search_Result")]
+        [HttpGet("{name}")]
         public ActionResult<List<Product>> Search(string name)
         {
             return _searchService.SearchProducts(name);
         }
-
-
-
     }
 }

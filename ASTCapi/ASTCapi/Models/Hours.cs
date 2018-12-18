@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace ASTCapi.Models
+﻿namespace ASTCapi.Models
 {
     public class Hours
     {
@@ -17,7 +12,7 @@ namespace ASTCapi.Models
 
         public string Fri { get; set; }
 
-        public string Sat{ get; set; }
+        public string Sat { get; set; }
 
         public string Sun { get; set; }
     }

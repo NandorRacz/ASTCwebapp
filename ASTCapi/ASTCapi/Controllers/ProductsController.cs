@@ -22,7 +22,7 @@ namespace ASTCapi.Controllers
             return _productService.Get();
         }
 
-        [HttpGet("{id:length(24)}")]
+        [HttpGet("{id:length(24)}", Name = "GetProduct")]
         public ActionResult<Product> Get(string id)
         {
             var product = _productService.Get(id);
@@ -40,7 +40,7 @@ namespace ASTCapi.Controllers
         {
             _productService.Create(product);
 
-            return CreatedAtRoute("GetShop", new { id = product.Id.ToString() }, product);
+            return CreatedAtRoute("GetProduct", new { id = product.Id.ToString() }, product);
         }
 
         [HttpPut("{id:length(24)}")]

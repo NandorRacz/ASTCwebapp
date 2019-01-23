@@ -16,13 +16,13 @@ namespace ASTCapi.Controllers
             _shopService = shopService;
         }
 
-        [HttpGet(]
+        [HttpGet()]
         public ActionResult<List<Shop>> Get()
         {
             return _shopService.Get();
         }
 
-        [HttpGet("{id:length(24)}")]
+        [HttpGet("{id:length(24)}", Name = "GetShop")]
         public ActionResult<Shop> Get(string id)
         {
             var shop = _shopService.Get(id);
